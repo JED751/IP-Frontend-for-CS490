@@ -1,1 +1,2 @@
-frontend2
+activate and deactivate frontend process:
+npm start within my-app folder
