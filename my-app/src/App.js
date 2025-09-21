@@ -1,6 +1,12 @@
+//todo:
+//start films page
+//create navigation bar at the top of all pages to go between pages easier
+//style with CSS
+
 import {useEffect, useState} from "react"; //allows for initialization and updating of variables
-import {Routes, Route, Link} from "react-router-dom"; //allows for routing different pages
-import FilmDetails from "./FilmDetails"; //film details page to be implemented next
+import {Routes, Route, Link} from "react-router-dom"; //allows for routing different pages with links
+import FilmDetails from "./FilmDetails"; //film details page
+import ActorDetails from "./ActorDetails"; //actor details page
 
 function Home() { //changed from App to Home to represent home page
 
@@ -18,12 +24,10 @@ function Home() { //changed from App to Home to represent home page
     fetch("http://127.0.0.1:5000/api/actors/top5") //fetching from flask to get the actor data in MySQL since it is connected to it
       .then(object => object.json()) //object converted to json
       .then(setActors).catch(() => setActors([])); //set actors is updated with the values of actors
-
     }, []);
 
   return (
     <main style={{fontFamily: "system-ui", padding: 20}}>
-
       <h1>Top 5 Rented Films of All Time</h1>
         <ul>
           {films.map(f => ( //maps each film, using SQL variables in these code portions
@@ -39,7 +43,12 @@ function Home() { //changed from App to Home to represent home page
       <h2 style={{marginTop: 50}}>Top 5 Actors</h2>
         <ul>
           {actors.map(a => ( //maps each actor, using SQL variables in these code portions
-            <li key={a.actor_id}>{a.name} is a part of <b>{a.films_count}</b> movies.</li>
+            <li key={a.actor_id}>
+              <Link to={`/actors/${a.actor_id}`}> {/* link for clicking an actor and seeing their details, brings us to ActorDetails.js */}
+                {a.name}
+              </Link>{" "}
+              is a part of <b>{a.films_count}</b> movies.
+            </li>
           ))}
         </ul>
     </main>
@@ -53,6 +62,7 @@ export default function App() { //default app function that allows us to run all
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/films/:id" element={<FilmDetails />} />
+      <Route path="/actors/:id" element={<ActorDetails />} />
     </Routes>
   );
 }

@@ -2,10 +2,11 @@ import {useParams, Link} from "react-router-dom"; //for using URL parameters, fo
 import {useEffect, useState} from "react"; //allows for initialization and updating of variables
 
 export default function FilmDetails() { //film details page
-  const {id} = useParams(); //the ID from the current URL
+  const {id} = useParams(); //the film ID from the current URL
   const [film, setFilm] = useState(null); //the actual film, initially NULL
 
   useEffect(() => {
+
     //As a user I want to be able to click on any of the top 5 films and view its details
     fetch(`http://127.0.0.1:5000/api/films/${id}`) //getting the URL with the film_id in it
         .then(object => {return object.json();}).then(setFilm) //getting the film information and turning it into JSON
@@ -15,8 +16,9 @@ export default function FilmDetails() { //film details page
 
   return (
     <main style={{fontFamily: "system-ui", padding: 20}}>
-
-        <p><Link to="/">Back To Home</Link></p>
+        <p>
+            <Link to="/">Back To Home</Link>
+        </p>
         <h1>{film.title}</h1>
         <p>
             <b>Film ID:</b> {film.id}
@@ -51,7 +53,13 @@ export default function FilmDetails() { //film details page
         <p>
             <b>Cast:</b>
             <ul>
-                {film.actors.map(a => <li key={a.actor_id}>{a.name}</li>)}
+                {film.actors.map(a => (
+                <li key={a.actor_id}>
+                    <Link to={`/actors/${a.actor_id}`}> {/* link for clicking an actor and seeing their details, brings us to ActorDetails.js */}
+                        {a.name} 
+                    </Link>{" "}
+                </li>
+                ))}
             </ul>
         </p>
         <p>
