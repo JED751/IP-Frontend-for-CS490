@@ -4,16 +4,17 @@ import FilmDetails from "./FilmDetails"; //film details page to be implemented n
 
 function Home() { //changed from App to Home to represent home page
 
-  //As a user I want to view top 5 rented films of all time
   const [films, setFilms] = useState([]); //list of films and function to update the films
   const [actors, setActors] = useState([]); //list of actors and function to update the actors
 
   useEffect(() => { //function to alter a component
 
+    //As a user I want to view top 5 rented films of all time
     fetch("http://127.0.0.1:5000/api/films/top5") //fetching from flask to get the film data in MySQL since it is connected to it
       .then(object => object.json()) //object converted to json
       .then(setFilms).catch(() => setFilms([])); //set films is updated with the values of films
 
+    //As a user I want to be able to view top 5 actors that are part of films I have in the store
     fetch("http://127.0.0.1:5000/api/actors/top5") //fetching from flask to get the actor data in MySQL since it is connected to it
       .then(object => object.json()) //object converted to json
       .then(setActors).catch(() => setActors([])); //set actors is updated with the values of actors
@@ -27,7 +28,10 @@ function Home() { //changed from App to Home to represent home page
         <ul>
           {films.map(f => ( //maps each film, using SQL variables in these code portions
             <li key={f.film_id}>
-              {f.title} has <b>{f.rentals_count}</b> rentals.
+              <Link to={`/films/${f.film_id}`}> {/* link for clicking a film and seeing its details, brings us to FilmDetails.js */}
+                {f.title} 
+              </Link>{" "}
+              has <b>{f.rentals_count}</b> rentals.
             </li>
           ))}
         </ul>
