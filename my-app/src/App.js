@@ -85,6 +85,7 @@ export default function App() { //default app function that allows us to run all
         <nav style={{display: "flex", gap: 16, fontFamily: "system-ui", padding: 20}}>
           <Link to="/">Home</Link>
           <Link to="/films">Films</Link>
+          <Link to="/customers">Customers</Link>
         </nav>
       </header>
 

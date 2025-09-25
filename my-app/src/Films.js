@@ -65,6 +65,7 @@ export default function Films() { //films details page
                     <Link to={`/films/${f.film_id}`}> {/* link for clicking a film and seeing its details, brings us to FilmDetails.js */}
                         {f.title}
                     </Link>{" "}
+                    {": "} {f.release_year} -- {f.rating} -- {f.length} min -- {f.categories} {/* As a user I want to be able to view details of the film */}
                 </li>
             ))}
         </ul>
