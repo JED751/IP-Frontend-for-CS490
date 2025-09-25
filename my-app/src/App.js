@@ -1,12 +1,32 @@
 //todo:
-//start films page
-//create navigation bar at the top of all pages to go between pages easier
-//style with CSS
+/*
+Landing Page (4):
+•    As a user I want to view top 5 rented films of all times - done
+•    As a user I want to be able to click on any of the top 5 films and view its details - done
+•    As a user I want to be able to view top 5 actors that are part of films I have in the store - done
+•    As a user I want to be able to view the actor’s details and view their top 5 rented films - done
+Films Page (3):
+•    As a user I want to be able to search a film by name of film, name of an actor, or genre of the film - done
+•    As a user I want to be able to view details of the film
+•    As a user I want to be able to rent a film out to a customer
+Customer Page (7):
+•    As a user I want to view a list of all customers (Pref. using pagination)
+•    As a user I want the ability to filter/search customers by their customer id, first name or last name.
+•    As a user I want to be able to add a new customer
+•    As a user I want to be able to edit a customer’s details
+•    As a user I want to be able to delete a customer if they no longer wish to patron at store
+•    As a user I want to be able to view customer details and see their past and present rental history
+•    As a user I want to be able to indicate that a customer has returned a rented movie
+*/
+//misc:
+//create customer page and route
+//style with CSS (at end)
 
 import {useEffect, useState} from "react"; //allows for initialization and updating of variables
 import {Routes, Route, Link} from "react-router-dom"; //allows for routing different pages with links
 import FilmDetails from "./FilmDetails"; //film details page
 import ActorDetails from "./ActorDetails"; //actor details page
+import Films from "./Films"; //film details page
 
 function Home() { //changed from App to Home to represent home page
 
@@ -59,10 +79,21 @@ function Home() { //changed from App to Home to represent home page
 
 export default function App() { //default app function that allows us to run all of our pages
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/films/:id" element={<FilmDetails />} />
-      <Route path="/actors/:id" element={<ActorDetails />} />
-    </Routes>
+    <>
+      {/* navigation bar for all pages */}
+      <header>
+        <nav style={{display: "flex", gap: 16, fontFamily: "system-ui", padding: 20}}>
+          <Link to="/">Home</Link>
+          <Link to="/films">Films</Link>
+        </nav>
+      </header>
+
+      <Routes>
+        <Route path="/" element={<Home />} /> {/* home page */}
+        <Route path="/films/:id" element={<FilmDetails />} /> {/* film details page */}
+        <Route path="/actors/:id" element={<ActorDetails />} /> {/* actor details page */}
+        <Route path="/films" element={<Films />} /> {/* films page */}
+      </Routes>
+    </>
   );
 }

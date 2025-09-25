@@ -16,9 +16,9 @@ export default function FilmDetails() { //film details page
 
   return (
     <main style={{fontFamily: "system-ui", padding: 20}}>
-        <p>
-            <Link to="/">Back To Home</Link>
-        </p>
+        {/*<p>
+            <Link to="/">Back To Home</Link> -- useless now since we have nav bar on every page with a Home button
+        </p>*/}
         <h1>{film.title}</h1>
         <p>
             <b>Film ID:</b> {film.id}

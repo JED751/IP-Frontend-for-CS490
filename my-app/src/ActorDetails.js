@@ -16,9 +16,9 @@ export default function ActorDetails() { //actor details page
 
   return (
     <main style={{fontFamily: "system-ui", padding: 20}}>
-        <p>
-            <Link to="/">Back To Home</Link>
-        </p>
+        {/*<p>
+            <Link to="/">Back To Home</Link> -- useless now since we have nav bar on every page with a Home button
+        </p>*/}
         <h1>{actor.name}</h1>
         <p>
             This actor has starred in {actor.films_count} films.
@@ -29,7 +29,7 @@ export default function ActorDetails() { //actor details page
             <li key={f.film_id}>
                 <Link to={`/films/${f.film_id}`}> {/* link for clicking a film and seeing its details, brings us to FilmDetails.js */}
                     {f.title}
-                </Link>{" "} 
+                </Link>{" "}
                 has <b>{f.rentals_count}</b> rentals.
             </li>
             ))}
