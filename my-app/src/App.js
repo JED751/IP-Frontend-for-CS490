@@ -7,10 +7,10 @@ Landing Page (4):
 •    As a user I want to be able to view the actor’s details and view their top 5 rented films - done
 Films Page (3):
 •    As a user I want to be able to search a film by name of film, name of an actor, or genre of the film - done
-•    As a user I want to be able to view details of the film
+•    As a user I want to be able to view details of the film - done
 •    As a user I want to be able to rent a film out to a customer
 Customer Page (7):
-•    As a user I want to view a list of all customers (Pref. using pagination)
+•    As a user I want to view a list of all customers (Pref. using pagination) - done
 •    As a user I want the ability to filter/search customers by their customer id, first name or last name.
 •    As a user I want to be able to add a new customer
 •    As a user I want to be able to edit a customer’s details
@@ -19,14 +19,14 @@ Customer Page (7):
 •    As a user I want to be able to indicate that a customer has returned a rented movie
 */
 //misc:
-//create customer page and route
 //style with CSS (at end)
 
 import {useEffect, useState} from "react"; //allows for initialization and updating of variables
 import {Routes, Route, Link} from "react-router-dom"; //allows for routing different pages with links
 import FilmDetails from "./FilmDetails"; //film details page
 import ActorDetails from "./ActorDetails"; //actor details page
-import Films from "./Films"; //film details page
+import Films from "./Films"; //films page
+import Customers from "./Customers"; //customers page
 
 function Home() { //changed from App to Home to represent home page
 
@@ -90,10 +90,11 @@ export default function App() { //default app function that allows us to run all
       </header>
 
       <Routes>
-        <Route path="/" element={<Home />} /> {/* home page */}
-        <Route path="/films/:id" element={<FilmDetails />} /> {/* film details page */}
-        <Route path="/actors/:id" element={<ActorDetails />} /> {/* actor details page */}
-        <Route path="/films" element={<Films />} /> {/* films page */}
+        <Route path="/" element={<Home />}/> {/* home page */}
+        <Route path="/films/:id" element={<FilmDetails />}/> {/* film details page */}
+        <Route path="/actors/:id" element={<ActorDetails />}/> {/* actor details page */}
+        <Route path="/films" element={<Films />}/> {/* films page */}
+        <Route path="/customers" element={<Customers />}/> {/* customers page */}
       </Routes>
     </>
   );

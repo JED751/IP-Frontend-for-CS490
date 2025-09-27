@@ -1,7 +1,8 @@
 import {Link} from "react-router-dom"; //for switching pages
 import {useEffect, useState} from "react"; //allows for initialization and updating of variables
 
-export default function Films() { //films details page
+export default function Films() { //films page
+    
     const [mode, setMode] = useState("title"); //"Search by" mode
     const [query, setQuery] = useState(""); //user input
     const [data, setData] = useState({items: [], page: 1, pageSize: 20, total: 0, totalPages: 0}); //data returned
@@ -16,7 +17,7 @@ export default function Films() { //films details page
 
         //As a user I want to be able to search a film by name of film, name of an actor, or genre of the film
         fetch(`http://127.0.0.1:5000/api/films/search?${params.toString()}`) //calling backend to search for film
-        .then(object => object.json()).then(setData).finally(); //getting the film information and turning it into JSON, updating data
+        .then(object => object.json()).then(setData); //getting the film information and turning it into JSON, updating data
     }
 
     function onSubmit(e) { //function for user clicking Search button
@@ -58,17 +59,49 @@ export default function Films() { //films details page
                 style={{minWidth: 350}}/>
             <button type="submit">Search</button>
         </form>
+
+        {/* old way of showing films as a user list, decided table was more appropriate
         <ul>
             {data.items.map(f => (
                 <li key={f.film_id}>
                     {f.film_id}{" "}
-                    <Link to={`/films/${f.film_id}`}> {/* link for clicking a film and seeing its details, brings us to FilmDetails.js */}
+                    <Link to={`/films/${f.film_id}`}> link for clicking a film and seeing its details, brings us to FilmDetails.js
                         {f.title}
                     </Link>{" "}
-                    {": "} {f.release_year} -- {f.rating} -- {f.length} min -- {f.categories} {/* As a user I want to be able to view details of the film */}
+                    {": "} {f.release_year} -- {f.rating} -- {f.length} min -- {f.categories} As a user I want to be able to view details of the film
                 </li>
             ))}
         </ul>
+         */}
+
+        <table border="1" cellPadding="5" style={{borderCollapse: "collapse", width: "100%", maxWidth: 1000}}>
+            <thead>
+                <tr>
+                    <th>Film ID</th>
+                    <th>Title</th>
+                    <th>Release Year</th>
+                    <th>Rating</th>
+                    <th>Length</th>
+                    <th>Categories</th>
+                </tr>
+            </thead> 
+            <tbody>
+                {data.items.map(f => (
+                <tr key={f.film_id}>
+                    <td>{f.film_id}</td>
+                    <td>
+                    <Link to={`/films/${f.film_id}`}> {/* link for clicking a film and seeing its details, brings us to FilmDetails.js */}
+                        {f.title}
+                    </Link>{" "}
+                    </td>
+                    <td>{f.release_year}</td> {/* As a user I want to be able to view details of the film */}
+                    <td>{f.rating}</td>
+                    <td>{f.length} min</td>
+                    <td>{f.categories}</td>
+                </tr>))}
+            </tbody>
+        </table>
+
         <p>
             {`Showing page number ${data.page} of ${data.totalPages} with ${data.total} total results`} {/* page results information */}
         </p>
