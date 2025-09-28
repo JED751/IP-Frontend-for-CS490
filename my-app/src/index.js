@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
+import './App.css'; //comment this in and out to toggle CSS on/off while developing
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

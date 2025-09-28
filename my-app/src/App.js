@@ -19,7 +19,7 @@ Customer Page (7):
 •    As a user I want to be able to indicate that a customer has returned a rented movie
 */
 //misc:
-//style with CSS (at end)
+//style with CSS (at end) - done
 
 import {useEffect, useState} from "react"; //allows for initialization and updating of variables
 import {Routes, Route, Link} from "react-router-dom"; //allows for routing different pages with links
@@ -47,8 +47,9 @@ function Home() { //changed from App to Home to represent home page
     }, []);
 
   return (
-    <main style={{fontFamily: "system-ui", padding: 20}}>
-      <h1>Top 5 Rented Films of All Time</h1>
+    <main style={{fontFamily: "system-ui", padding: 20, marginLeft: 1000}}>
+      <h1 style={{marginLeft: 100}}>Sakila Movies</h1>
+      <h2>Top 5 Rented Films of All Time</h2>
         <ul>
           {films.map(f => ( //maps each film, using SQL variables in these code portions
             <li key={f.film_id}>
@@ -82,7 +83,7 @@ export default function App() { //default app function that allows us to run all
     <>
       {/* navigation bar for all pages */}
       <header>
-        <nav style={{display: "flex", gap: 16, fontFamily: "system-ui", padding: 20}}>
+        <nav style={{display: "flex", gap: 16, fontFamily: "system-ui", padding: 15}}>
           <Link to="/">Home</Link>
           <Link to="/films">Films</Link>
           <Link to="/customers">Customers</Link>

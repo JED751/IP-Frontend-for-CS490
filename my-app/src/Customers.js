@@ -33,9 +33,9 @@ export default function Customers() { //customers page
                     <th>Email</th>
                     <th>Active</th>
                     <th>Location</th>
-                    <th>Total rentals</th>
-                    <th>Current rentals</th>
-                    <th>Last rental</th>
+                    <th>Total Rentals</th>
+                    <th>Current Rentals</th>
+                    <th>Last Rental</th>
                 </tr>
             </thead>
             <tbody>

@@ -56,7 +56,7 @@ export default function Films() { //films page
                     mode === "actor" ? "ex. GINA DEGENERES" :
                     "ex. Travel"
                 }
-                style={{minWidth: 350}}/>
+                style={{minWidth: 750}}/>
             <button type="submit">Search</button>
         </form>
 
@@ -74,7 +74,7 @@ export default function Films() { //films page
         </ul>
          */}
 
-        <table border="1" cellPadding="5" style={{borderCollapse: "collapse", width: "100%", maxWidth: 1000}}>
+        <table border="1" cellPadding="5" style={{borderCollapse: "collapse", width: "100%", maxWidth: 2000}}>
             <thead>
                 <tr>
                     <th>Film ID</th>
